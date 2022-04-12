@@ -6,14 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./animation.css" />
     <title>HEX Rec</title>
 </head>
 
 <body>
 
+    <!-- <header>
+        안녕하세요
+    </header> -->
+    <nav></nav>
     <div class="wrap">
 
-        <div class="hex">
+        <div class="hex" url="https://www.naver.com">
             <div class="hex-inner">
                 <div class="content">
                     <p>HEX 1</p>
@@ -21,7 +26,7 @@
             </div>
         </div>
 
-        <div class="hex">
+        <div class="hex" url="www.naver.com">
             <div class="hex-inner">
                 <div class="content">
                     <p>HEX 2</p>
@@ -29,7 +34,7 @@
             </div>
         </div>
 
-        <div class="hex">
+        <div class="hex" url="www.naver.com">
             <div class="hex-inner">
                 <div class="content">
                     <p>HEX 3</p>
@@ -37,28 +42,28 @@
             </div>
         </div>
 
-        <div class="hex">
+        <div class="hex" url="www.naver.com">
             <div class="hex-inner">
                 <div class="content">
                     <p>HEX 4</p>
                 </div>
             </div>
         </div>
-        <div class="hex">
+        <div class="hex" url="www.naver.com">
             <div class="hex-inner">
                 <div class="content">
                     <p>HEX 5</p>
                 </div>
             </div>
         </div>
-        <div class="hex">
+        <div class="hex" url="www.naver.com">
             <div class="hex-inner">
                 <div class="content">
                     <p>HEX 6</p>
                 </div>
             </div>
         </div>
-        <div class="hex">
+        <div class="hex" url="www.naver.com">
             <div class="hex-inner">
                 <div class="content">
                     <p>HEX 7</p>
@@ -71,20 +76,24 @@
     <script>
 
 
+        window.onload = function (e) {
+            lotateControl();
+        };
+
         function lotateControl() {
             try {
-                let targets = document.querySelectorAll('.hex');
-
-                targets.forEach(e => e.addEventListener('mouseenter', (e) => {
-                    mouseEvent(e);
-                }))
+                document.querySelectorAll('.hex').forEach(node => {
+                    node.addEventListener('mouseenter', function (e) {
+                        mouseEvent(e, this);
+                    })
+                });
             } catch (error) {
 
             }
 
         }
 
-        function mouseEvent(e) {
+        function mouseEvent(e, parent) {
 
             try {
                 let node = e.target;
@@ -95,16 +104,31 @@
 
                 p.innerHTML = 'focus';
 
-                return node.addEventListener('mouseleave', () => {
+                node.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    let url = parent.getAttribute('url')
+                    console.log(url);
+                    moveSite(url)
+                }, false);
+                node.addEventListener('mouseleave', () => {
                     p.innerHTML = prevHTML;
-                })
+                });
             } catch (error) {
                 console.error(error)
             }
 
         }
 
-        lotateControl();
+        const moveSite = (url) => {
+
+            try {
+                window.location.href = url;
+            } catch (error) {
+
+            }
+
+        }
 
         // targets.forEach(e => e.addEventListener('mouseenter', (e) => {
         //     let node = e.target;
