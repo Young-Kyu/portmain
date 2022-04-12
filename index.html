@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css" />
+    <title>HEX Rec</title>
+</head>
+
+<body>
+
+    <div class="wrap">
+
+        <div class="hex">
+            <div class="hex-inner">
+                <div class="content">
+                    <p>HEX 1</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hex">
+            <div class="hex-inner">
+                <div class="content">
+                    <p>HEX 2</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hex">
+            <div class="hex-inner">
+                <div class="content">
+                    <p>HEX 3</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hex">
+            <div class="hex-inner">
+                <div class="content">
+                    <p>HEX 4</p>
+                </div>
+            </div>
+        </div>
+        <div class="hex">
+            <div class="hex-inner">
+                <div class="content">
+                    <p>HEX 5</p>
+                </div>
+            </div>
+        </div>
+        <div class="hex">
+            <div class="hex-inner">
+                <div class="content">
+                    <p>HEX 6</p>
+                </div>
+            </div>
+        </div>
+        <div class="hex">
+            <div class="hex-inner">
+                <div class="content">
+                    <p>HEX 7</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+
+        function lotateControl() {
+            try {
+                let targets = document.querySelectorAll('.hex');
+
+                targets.forEach(e => e.addEventListener('mouseenter', (e) => {
+                    mouseEvent(e);
+                }))
+            } catch (error) {
+
+            }
+
+        }
+
+        function mouseEvent(e) {
+
+            try {
+                let node = e.target;
+                let firstChildren = node.children[0];
+                let second = firstChildren.children[0];
+                let p = second.children[0];
+                let prevHTML = p.innerHTML;
+
+                p.innerHTML = 'focus';
+
+                return node.addEventListener('mouseleave', () => {
+                    p.innerHTML = prevHTML;
+                })
+            } catch (error) {
+                console.error(error)
+            }
+
+        }
+
+        lotateControl();
+
+        // targets.forEach(e => e.addEventListener('mouseenter', (e) => {
+        //     let node = e.target;
+        //     let firstChildren = node.children[0];
+        //     let second = firstChildren.children[0];
+        //     let p = second.children[0];
+
+        //     return function () {
+        //         return () => node.addEventListener('mouseleave', () => console.log('123123'))
+        //     }
+
+        //     p.innerHTML = 'focus';
+
+
+
+        // }));
+
+        // function leaveControl(t) {
+        //     console.log(t.target.innerHTML)
+        // }
+
+        // [].forEach.call(targets, (target) => target.addEventListener('mouseenter', (target) => {
+        //     console.info(target)
+        //     let childNodes = target.srcElement;
+        //     console.log(childNodes.children)
+
+        // }));
+
+    </script>
+
+</body>
+
+</html>

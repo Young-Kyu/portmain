@@ -1,0 +1,155 @@
+
+/* //기본으로 작성되는 CSS는 576px보다 작은 화면에서 작동 됩니다. 
+// 가로모드 모바일 디바이스 (가로 해상도가 576px 보다 큰 화면에 적용)  */
+
+body{
+    background-color: purple;
+}
+
+html body {
+    margin : 0;
+    padding : 0;
+    font-size : 10px;
+}
+
+.wrap{
+    width : 80%;
+    margin : 1rem auto;
+    display : flex;
+    flex-wrap : wrap;
+    /* background-color: purple; */
+}
+
+.hex{
+    width : 25%;
+    margin-bottom : 1.8%;
+    position:relative;
+    visibility: hidden;
+    /* background-color: green; */
+}
+
+/* nth-of-type : https://ak-coding.tistory.com/23 */
+/* 부모 wrap div하위의 .hex 형제중에서 5번째 .hex클래스에 스타일 적용 */
+
+/* 
+    7 * 0 + 5 = 5
+    7 * 1 + 5 = 13
+    7 * 2 + 5 = 19
+    7 * 3 + 5 = 26
+    n은 계속 증가하며 결과값에 해당되는 .hex마다 스타일 적용하겠다는 의미
+*/
+.hex:nth-of-type(7n+5){
+    margin-left : 12.5%;
+}
+
+/* 
+    after, before, content : https://webroadcast.tistory.com/4
+                             https://goddino.tistory.com/43
+*/
+
+.hex::after{
+    content : '';
+    display: block;
+    padding-bottom : 80%;
+}
+
+/* 
+    rotate3d : rotate3d((-)y,(-)x,(-)z, (-)n deg)
+                    0 : 가만히
+                    양수 : 위, 오른쪽, deg만큼 오른쪽 회전
+                    음수 : 아래, 왼쪽, deg만큼 왼쪽 회전
+
+    skew : http://www.devdic.com/css/refer/functions/function:1254/skewY()
+     : 2D로 비튼다
+*/
+
+.hex-inner{
+    position : absolute;
+    width : 99%;
+    padding-bottom : 114.6%;
+    overflow: hidden;
+    visibility: hidden;
+    transform : rotate3d(0,0,1,-60deg) skewY(30deg);
+    background-color: violet;
+}
+
+.hex-inner * {
+    position: absolute;
+    visibility: visible;
+}
+
+
+.content:hover{
+    background-color: purple;
+    translate: .35s;
+}
+
+.content:not(:hover){
+    background-color: red;
+}
+.content{
+    display: flex;
+    width : 100%;
+    height : 100%;
+    overflow: hidden;
+    transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+    background-color: #02b4cd80;
+    justify-content: center;
+    align-items: center;
+}
+
+.content p {
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+}
+
+@media (min-width: 576px) { 
+    body {
+        background-color: pink;
+    }
+    .content p {
+        font-size: 1.5rem;
+        text-align: center;
+        color: #fff;
+    }
+ } 
+ 
+/* // 태블릿 디바이스 (가로 해상도가 768px 보다 큰 화면에 적용)  */
+@media (min-width: 768px) { 
+    body {
+        background-color: green;
+    }
+
+    .content p {
+        font-size: 2rem;
+        text-align: center;
+        color: #fff;
+    }
+ } 
+ 
+/* // 테스크탑 (가로 해상도가 992px 보다 큰 화면에 적용)  */
+@media (min-width: 992px) { 
+    body {
+        background-color: orange;
+    }
+
+    .content p {
+        font-size: 3rem;
+        text-align: center;
+        color: #fff;
+    }
+ } 
+ 
+/* // 큰화면 데스크탑 (가로 해상도가 1200px 보다 큰 화면에 적용)  */
+@media (min-width: 1200px) { 
+    body {
+        background-color: blue;
+    }
+
+    .content p {
+        font-size: 4rem;
+        text-align: center;
+        color: #fff;
+    }
+ }
